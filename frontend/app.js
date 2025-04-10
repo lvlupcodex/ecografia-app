@@ -24,13 +24,15 @@ document.addEventListener("DOMContentLoaded", () => {
       selectedFile = e.target.files[0];
   
       if (selectedFile) {
+        //SI EL BOTONCITO ESTÁ MAL Y ES MUY GRANDE
         if (selectedFile.size > 25 * 1024 * 1024) {
-          showToast("⚠️ Archivo demasiado grande (máx 25MB)");
+          showToast("Archivo demasiado grande (máx. 25MB)");
           selectedFile = null;
           submitBtn.classList.add("hidden");
           uploadBtn.classList.remove("hidden");
         } else {
-          showToast(`✅ Archivo listo: ${selectedFile.name}`);
+          //ELSE EL BOTONCITO ESTÁ BIEN Y TIENE EL TAMAÑO DE > 25MB TODO BIEN
+          showToast(`Archivo cargado: ${selectedFile.name}`);
           submitBtn.classList.remove("hidden");
           uploadBtn.classList.add("hidden");
         }
@@ -39,13 +41,13 @@ document.addEventListener("DOMContentLoaded", () => {
   
     submitBtn.addEventListener("click", async () => {
       if (!selectedFile) {
-        showToast("⚠️ No hay archivo seleccionado");
+        showToast("No hay ningún archivo seleccionado.");
         return;
       }
   
       const formData = new FormData();
       formData.append("file", selectedFile);
-  
+      //Intenta meter, si no puedes, error 500 y lo que sea.
       try {
         const response = await fetch("/upload", {
           method: "POST",
@@ -55,9 +57,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const result = await response.json();
   
         if (result.error) {
-          showToast(`❌ Error: ${result.error}`);
+          showToast(` - X - Error: ${result.error}`);
         } else {
-          showToast("✅ Informe enviado correctamente");
+          showToast("Informe enviado correctamente");
           selectedFile = null;
           audioInput.value = "";
           submitBtn.classList.add("hidden");
@@ -65,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       } catch (err) {
         console.error(err);
-        showToast("❌ Error de red o conexión");
+        showToast("- X - Error de red o conexión");
       }
     });
   });

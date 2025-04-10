@@ -1,3 +1,4 @@
+//BIENVENIDO SEA USTED AL BACKEND
 require("dotenv").config();
 
 const express = require("express");
@@ -10,25 +11,27 @@ const { sendEmail } = require("./sendMail");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Crear carpeta uploads si no existe (para producción como Render)
+//UPDATEEE. PARA RENDER CREAR CARPETA UPLOADSSS
 const uploadDir = "uploads";
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
-  console.log("📁 Carpeta 'uploads/' creada");
+  console.log("Carpetita 'uploads/' creada");
 }
 
-// Permite peticiones JSON y CORS
+//APP USA REQUESTS EN JSON Y CORS! NADA MÁS NADA MENOS.
 app.use(express.json());
 app.use(cors());
 
-// Sirve los archivos estáticos del frontend
+//Decir a APP QUE USE LOS ARCHIVOS DEL FRONT SIN VOLVERSE LOCO
 app.use(express.static(path.join(__dirname, "../frontend")));
 
-// Configuración de Multer para la subida de archivos (límite 25MB)
+//Como FILE de PHP pero con Multer para subir archivos maximo 25 MB
+//Todo se sube a UPLOADS que se creó antes XD
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "uploads/");
   },
+  //FILENIME PERSONALIZADO SUPER IMPORTANTE CON RANDOM PARA NO DUPLICADOS
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1E9);
     cb(null, uniqueSuffix + "-" + file.originalname);
@@ -43,16 +46,17 @@ const upload = multer({
 // Ruta POST para procesar la subida y enviar el email
 app.post("/upload", upload.single("file"), async (req, res) => {
   try {
+    //Si no file guanajo, error 400 guanajada error
     if (!req.file) {
-      return res.status(400).json({ error: "No se ha subido ningún archivo." });
+      return res.status(400).json({ error: "No se ha subido ningún archivo. Guanajada Error." });
     }
     const filePath = req.file.path;
     const originalFilename = req.file.originalname;
 
-    // Envía el email con el archivo adjunto
+    //Resultado = espera que se mande el email con el archivo y se ENVIA wiii.
     const result = await sendEmail(filePath, originalFilename);
 
-    // Elimina el archivo temporal después de enviar
+    //Elimina el archivo temporal después de enviar porque somos pros
     fs.unlink(filePath, (err) => {
       if (err) console.error("Error al eliminar el archivo:", err);
     });

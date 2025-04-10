@@ -1,4 +1,4 @@
-/* Reset básico */
+/* reseteo de Enrico Pucci */
 * {
     margin: 0;
     padding: 0;
@@ -13,7 +13,7 @@
     overflow: hidden;
   }
   
-  /* Banner Superior e Inferior */
+  /* banners */
   #topBanner, #bottomBanner {
     text-align: center;
     padding: 1rem;
@@ -35,7 +35,7 @@
     opacity: 0.8;
   }
   
-  /* Contenedor principal */
+  /* main principal */
   main {
     height: 100vh;
     display: flex;
@@ -75,7 +75,7 @@
     display: none;
   }
   
-  /* Toast Notifications */
+ 
   .toast {
     position: fixed;
     bottom: 5rem;
@@ -95,7 +95,7 @@
     opacity: 1;
   }
   
-  /* Animaciones */
+  /* fades cool */
   @keyframes fadeIn {
     from {
       opacity: 0;
