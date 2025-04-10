@@ -10,6 +10,13 @@ const { sendEmail } = require("./sendMail");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Crear carpeta uploads si no existe (para producción como Render)
+const uploadDir = "uploads";
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir);
+  console.log("📁 Carpeta 'uploads/' creada");
+}
+
 // Permite peticiones JSON y CORS
 app.use(express.json());
 app.use(cors());
