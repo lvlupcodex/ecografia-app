@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Informe de Ecografía</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header id="topBanner">
+    Informes Automatizados & Registro en CRM
+  </header>
+
+  <main>
+    <div class="container">
+      <input type="file" id="audioInput" accept=".mp3,.m4a,.wav,.flac,.ogg" capture="environment">
+      <button id="uploadBtn">Subir Ecografía</button>
+      <button id="submitBtn" class="hidden">Crear Informe</button>
+    </div>
+  </main>
+
+  <footer id="bottomBanner">
+    Veterinarios Harta - Todos los derechos reservados
+  </footer>
+
+  <div id="toast" class="toast hidden">Mensaje aquí</div>
+
+  <script src="app.js"></script>
+</body>
+</html>

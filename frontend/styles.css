@@ -1,0 +1,109 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    height: 100%;
+    background-color: #0a0a0a;
+    color: #f0f0f0;
+    font-family: "Segoe UI", sans-serif;
+    overflow: hidden;
+  }
+  
+  /* Banner Superior e Inferior */
+  #topBanner, #bottomBanner {
+    text-align: center;
+    padding: 1rem;
+    background-color: #111;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+  }
+  
+  #topBanner {
+    top: 0;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+  }
+  
+  #bottomBanner {
+    bottom: 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+  
+  /* Contenedor principal */
+  main {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    animation: fadeIn 1s ease-out;
+  }
+  
+  button {
+    background-color: #1f1f1f;
+    color: #fff;
+    border: 2px solid #444;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+  }
+  
+  button:hover {
+    background-color: #2c2c2c;
+    transform: scale(1.05);
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  input[type=\"file\"] {
+    display: none;
+  }
+  
+  /* Toast Notifications */
+  .toast {
+    position: fixed;
+    bottom: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    z-index: 999;
+  }
+  
+  .toast.show {
+    opacity: 1;
+  }
+  
+  /* Animaciones */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
